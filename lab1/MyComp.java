@@ -1,5 +1,3 @@
-package labka1;
-
 import java.util.Comparator;
 
 public class MyComp implements Comparator<Integer> {
