@@ -8,7 +8,7 @@ public class DecToRomanRecursion implements DecimalToRoman {
 
     @Override
     public String toRoman(int number) {
-        var map = RomanValues.map;
+        var map = RomanValues.decimalRoman;
 
         int floorKey =  map.floorKey(number);
 
