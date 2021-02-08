@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Main {
-	private static LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine();
@@ -10,19 +9,6 @@ public class Main {
 	}
 
 	public static void output(String input) {
-		map.put("I", 1);
-		map.put("IV", 4);
-		map.put("V", 5);
-		map.put("IX", 9);
-		map.put("X", 10);
-		map.put("XL", 40);
-		map.put("L", 50);
-		map.put("XC", 90);
-		map.put("C", 100);
-		map.put("CD", 400);
-		map.put("D", 500);
-		map.put("CM", 900);
-		map.put("M", 1000);
 		if (isNumeric(input)) {
 			try {
 				System.out.println(intToRomanNumeral(Integer.parseInt(input)));
@@ -66,7 +52,7 @@ public class Main {
 
 	public static Map.Entry<String, Integer> findBest(int input) {
 		Map.Entry<String, Integer> bestBase = null;
-		for (Map.Entry<String, Integer> entry : map.entrySet()) {
+		for (Map.Entry<String, Integer> entry : RomanValues.instance().map.entrySet()) {
 			if(bestBase == null) bestBase = entry;
 			if(entry.getValue() > bestBase.getValue() && entry.getValue() <= input) {
 				bestBase = entry;
@@ -80,14 +66,14 @@ public class Main {
 		String[] inputArr = input.split("");
 		for (int i = 0; i < input.length(); i++) {
 			if (i != input.length()-1) {
-				if (map.get(inputArr[i]) >= map.get(inputArr[i + 1])) {
-					result += map.get(inputArr[i]);
+				if (RomanValues.instance().map.get(inputArr[i]) >= RomanValues.instance().map.get(inputArr[i + 1])) {
+					result += RomanValues.instance().map.get(inputArr[i]);
 				} else {
-					result -= map.get(inputArr[i]);
+					result -= RomanValues.instance().map.get(inputArr[i]);
 				}
 			}
 			else {
-				result += map.get(inputArr[i]);
+				result += RomanValues.instance().map.get(inputArr[i]);
 			}
 		}
 		return result;
