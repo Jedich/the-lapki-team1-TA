@@ -10,7 +10,8 @@ public class Main {
 
         //Consider input is correct
         String input = getInput();
-        processInput(input, new DecToRomanRecursion(), new RomanToDecSimple());
+        String result = processInput(input, new DecToRomanRecursion(), new RomanToDecSimple());
+        System.out.println(result);
 
     }
 
@@ -20,19 +21,16 @@ public class Main {
         return scanner.nextLine();
     }
 
-    private static void processInput(String input, DecimalToRoman decToRom, RomanToDecimal romToDec) {
+    private static String processInput(String input, DecimalToRoman decToRom, RomanToDecimal romToDec) {
         try {
             if (isNumeric(input)) {
 				int numInput = Integer.parseInt(input);
-				System.out.print(numInput + " is ");
-                System.out.println(decToRom.toRoman(numInput));
-
+                return decToRom.toRoman(numInput);
             } else {
-				System.out.print(input + " is ");
-				System.out.println(romToDec.toDecimal(input));
+				return Integer.toString(romToDec.toDecimal(input));
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            return e.getMessage();
         }
 
     }
