@@ -1,7 +1,5 @@
-package firstLapka;
-
-import firstLapka.interfaces.DecimalToRoman;
-import firstLapka.interfaces.RomanToDecimal;
+import interfaces.DecimalToRoman;
+import interfaces.RomanToDecimal;
 
 import java.util.*;
 

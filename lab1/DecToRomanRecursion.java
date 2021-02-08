@@ -1,6 +1,4 @@
-package firstLapka;
-
-import firstLapka.interfaces.DecimalToRoman;
+import interfaces.DecimalToRoman;
 
 
 public class DecToRomanRecursion implements DecimalToRoman {

@@ -1,4 +1,4 @@
-package firstLapka.interfaces;
+package interfaces;
 
 public interface RomanToDecimal {
 

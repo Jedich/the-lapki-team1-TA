@@ -1,6 +1,4 @@
-package firstLapka;
-
-import firstLapka.interfaces.RomanToDecimal;
+import interfaces.RomanToDecimal;
 
 public class RomanToDecSimple implements RomanToDecimal {
 
