@@ -4,14 +4,18 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
+		System.out.println("Recursive array inversion example");
+		ArrayInverseStrategy<Integer> inverter = new ArrayInverseStrategy<>(readData(), new ArrayInverseRecursive());
+		System.out.println(inverter.performInversion());
 
-		ArrayInverseStrategy<Integer> invertor =
-				new ArrayInverseStrategy<>(new ArrayList<>(Arrays.asList(45, 67, 12)),
-						new ArrayInverseIterative());
-		System.out.println(invertor.performInversion());
+		System.out.println("Iterative array inversion example");
+		inverter = new ArrayInverseStrategy<>(readData(), new ArrayInverseIterative());
+		System.out.println(inverter.performInversion());
 
+		System.out.println("Binomial coefficient example");
 		Binomial binomial = new Binomial();
-		System.out.println(binomial.findCoefficient(7,10));
+		Scanner scanner = new Scanner(System.in);
+		System.out.println(binomial.findCoefficient(scanner.nextInt(), scanner.nextInt()));
 	}
 
 	public static ArrayList<Integer> readData() {

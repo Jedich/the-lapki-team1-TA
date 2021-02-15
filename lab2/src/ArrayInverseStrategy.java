@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArrayInverseStrategy<T> {
-	private ArrayList<T> inputArray;
+	private ArrayList<Integer> inputArray;
 	private Inversable inverter;
 
-	public ArrayInverseStrategy(ArrayList<T> inputArray, Inversable inverter) {
+	public ArrayInverseStrategy(ArrayList<Integer> inputArray, Inversable inverter) {
 		this.inputArray = inputArray;
 		this.inverter = inverter;
 	}
 
-	public ArrayList<T> performInversion() {
+	public ArrayList<Integer> performInversion() {
 		return inverter.inverse(inputArray);
 	}
 }
