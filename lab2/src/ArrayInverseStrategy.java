@@ -5,9 +5,9 @@ import java.util.List;
 
 public class ArrayInverseStrategy<T> {
 	private ArrayList<T> inputArray;
-	private Inversable<T> inverter;
+	private Inversable inverter;
 
-	public ArrayInverseStrategy(ArrayList<T> inputArray, Inversable<T> inverter) {
+	public ArrayInverseStrategy(ArrayList<T> inputArray, Inversable inverter) {
 		this.inputArray = inputArray;
 		this.inverter = inverter;
 	}
