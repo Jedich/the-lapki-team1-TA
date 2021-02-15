@@ -14,6 +14,17 @@ public class Main {
 		System.out.println(binomial.findCoefficient(7,10));
 	}
 
-	public static ArrayList<Integer> readData(String input) {
+	public static ArrayList<Integer> readData() {
+		ArrayList<Integer> arrayList = new ArrayList<>();
+		System.out.println("Enter numbers one by one:");
+		Scanner scanner = new Scanner(System.in);
+		while(true){
+			int myVar =  scanner.nextInt();
+			if (myVar == 0) {
+				return arrayList;
+			}else {
+				arrayList.add(myVar);
+			}
+		}
 	}
 }
