@@ -29,10 +29,13 @@ public class Main {
 	private static void testSorters(int[] array) {
 		DataProcessor dp;
 		long time;
+		System.out.print("working...");
+		Thread thread = new Thread(new HeartbeatThread());
+		thread.start();
 		dp = new DataProcessor(new BubbleSorter());
 		time = dp.getSortTimeMillis(array.clone());
-		System.out.println("BubbleSorter time: " + time + "ms");
-
+		System.out.println("\nBubbleSorter time: " + time + "ms");
+		thread.stop();
 		dp = new DataProcessor(new SelectionSorter());
 		time = dp.getSortTimeMillis(array.clone());
 		System.out.println("SelectionSorter time: " + time + "ms");
