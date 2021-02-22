@@ -1,14 +1,14 @@
 public class MergeSorter implements Sorter {
 	@Override
-	public void sort(byte[] array) {
+	public void sort(int[] array) {
 		sortParts(array, 0, array.length - 1);
 	}
 
-	void merge(byte[] arr, int left, int middle, int right) {
+	void merge(int[] arr, int left, int middle, int right) {
 		int n1 = middle - left + 1;
 		int n2 = right - middle;
-		byte[] leftPart = new byte[n1];
-		byte[] rightPart = new byte[n2];
+		int[] leftPart = new int[n1];
+		int[] rightPart = new int[n2];
 
 		if (n1 >= 0) {
 			System.arraycopy(arr, left, leftPart, 0, n1);
@@ -43,7 +43,7 @@ public class MergeSorter implements Sorter {
 		}
 	}
 
-	void sortParts(byte[] arr, int left, int right) {
+	void sortParts(int[] arr, int left, int right) {
 		if (left < right) {
 			int middle = (left + right) / 2;
 			sortParts(arr, left, middle);

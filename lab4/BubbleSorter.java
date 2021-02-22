@@ -1,6 +1,6 @@
 public class BubbleSorter implements Sorter {
 	@Override
-	public void sort(byte[] array) {
+	public void sort(int[] array) {
 		boolean swapped;
 		do {
 			swapped = false;
