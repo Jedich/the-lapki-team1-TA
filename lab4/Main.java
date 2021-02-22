@@ -29,7 +29,7 @@ public class Main {
 	private static void testSorters(int[] array) {
 		DataProcessor dp;
 		long time;
-		System.out.print("working...");
+		System.out.print("working.");
 		Thread thread = new Thread(new HeartbeatThread());
 		thread.start();
 		dp = new DataProcessor(new BubbleSorter());

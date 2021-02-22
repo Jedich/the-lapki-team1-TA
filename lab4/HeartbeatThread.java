@@ -3,7 +3,7 @@ class HeartbeatThread implements Runnable {
 	public void run() {
 		for (;;) {
 			if (!exit) {
-				System.out.print("...");
+				System.out.print(".");
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
