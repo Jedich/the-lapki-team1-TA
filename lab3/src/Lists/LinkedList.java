@@ -15,6 +15,21 @@ public class LinkedList<T> implements Listable<T> {
 		size++;
 	}
 
+	public void addTo(int index, T data) {
+		if (index > -1) {
+			Node<T> newNode = new Node<>(data);
+			Node<T> temp = head;
+			Node<T> current = null;
+			for (int i = 0; i < index; i++) {
+				current = temp;
+				temp = temp.next;
+			}
+			current.next = newNode;
+			newNode.next = temp;
+			size++;
+		}
+	}
+
 	public void addToStart(T value){
 		++size;
 		if(head == null){
@@ -56,6 +71,19 @@ public class LinkedList<T> implements Listable<T> {
 		}
 		head = head.next;
 		--size;
+	}
+
+	public void removeFrom(int index) {
+		if (index > -1) {
+			Node<T> temp = head;
+			Node<T> current = null;
+			for (int i = 0; i < index; i++) {
+				current = temp;
+				temp = temp.next;
+			}
+			current.next = temp.next;
+			size--;
+		}
 	}
 
 	public void removeLast(){
