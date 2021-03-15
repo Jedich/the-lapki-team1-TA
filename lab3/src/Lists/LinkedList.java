@@ -113,6 +113,10 @@ public class LinkedList<T> implements Listable<T> {
 		return -1;
 	}
 
+	public boolean isEmpty(){
+		return size == 0;
+	}
+
 
 
 }
