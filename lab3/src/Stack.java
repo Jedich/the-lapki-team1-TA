@@ -4,11 +4,11 @@ public class Stack<T> extends LinkedList<T> {
 
 
     public void push(T value) {
-        this.addToStart(value);
+        this.add(value);
     }
 
     public void pop() {
-        if (isEmpty()) {
+        if (!isEmpty()) {
             this.removeLast();
         }
     }
