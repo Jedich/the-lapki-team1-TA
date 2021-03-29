@@ -1,5 +1,9 @@
 import sorters.*;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
 public class Main {
 	public static void main(String[] args) {
 		System.out.println("==================1k elements==================");
@@ -29,22 +33,25 @@ public class Main {
 	}
 
 	private static void testSorters(int[] array) {
+		DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(Locale.ENGLISH);
+		otherSymbols.setDecimalSeparator('.');
+		DecimalFormat df = new DecimalFormat("0.###", otherSymbols);
 		DataProcessor dp;
-		long time;
+		double time;
 		dp = new DataProcessor(new HeapSorter());
 		time = dp.getSortTimeMillis(array.clone());
-		System.out.println("HeapSorter time: " + time + "ms");
+		System.out.println("HeapSorter time: " + df.format(time) + "ms");
 
 		dp = new DataProcessor(new ShellSorter());
 		time = dp.getSortTimeMillis(array.clone());
-		System.out.println("ShellSorter time: " + time + "ms");
+		System.out.println("ShellSorter time: " + df.format(time) + "ms");
 
 		dp = new DataProcessor(new QuickSorter());
 		time = dp.getSortTimeMillis(array.clone());
-		System.out.println("QuickSorter time: " + time + "ms");
+		System.out.println("QuickSorter time: " + df.format(time) + "ms");
 
 		dp = new DataProcessor(new MergeSorter());
 		time = dp.getSortTimeMillis(array.clone());
-		System.out.println("MergeSorter time: " + time + "ms");
+		System.out.println("MergeSorter time: " + df.format(time) + "ms");
 	}
 }

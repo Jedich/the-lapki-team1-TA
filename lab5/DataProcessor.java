@@ -12,11 +12,11 @@ public class DataProcessor {
 		sorter.sort(array);
 	}
 
-	public long getSortTimeMillis(int[] array) {
+	public double getSortTimeMillis(int[] array) {
 		long startTime = System.nanoTime();
 		sorter.sort(array);
 		long endTime = System.nanoTime();
 
-		return (endTime - startTime) / 1000000;
+		return (endTime - startTime) / 1000000.0;
 	}
 }
