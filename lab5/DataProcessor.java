@@ -1,3 +1,5 @@
+import sorters.Sorter;
+
 public class DataProcessor {
 
 	private Sorter sorter;

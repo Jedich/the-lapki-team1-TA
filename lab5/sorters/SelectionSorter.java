@@ -1,3 +1,5 @@
+package sorters;
+
 public class SelectionSorter implements Sorter {
 	@Override
 	public void sort(int[] array) {

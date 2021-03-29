@@ -1,3 +1,5 @@
+import sorters.*;
+
 public class Main {
 	public static void main(String[] args) {
 		System.out.println("==================1k elements==================");
@@ -29,17 +31,17 @@ public class Main {
 	private static void testSorters(int[] array) {
 		DataProcessor dp;
 		long time;
-		dp = new DataProcessor(new BubbleSorter());
+		dp = new DataProcessor(new HeapSorter());
 		time = dp.getSortTimeMillis(array.clone());
-		System.out.println("BubbleSorter time: " + time + "ms");
+		System.out.println("HeapSorter time: " + time + "ms");
 
-		dp = new DataProcessor(new SelectionSorter());
+		dp = new DataProcessor(new ShellSorter());
 		time = dp.getSortTimeMillis(array.clone());
-		System.out.println("SelectionSorter time: " + time + "ms");
+		System.out.println("ShellSorter time: " + time + "ms");
 
-		dp = new DataProcessor(new InsertionSorter());
+		dp = new DataProcessor(new QuickSorter());
 		time = dp.getSortTimeMillis(array.clone());
-		System.out.println("InsertionSorter time: " + time + "ms");
+		System.out.println("QuickSorter time: " + time + "ms");
 
 		dp = new DataProcessor(new MergeSorter());
 		time = dp.getSortTimeMillis(array.clone());
