@@ -6,28 +6,21 @@ import java.util.Locale;
 
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("==================1k elements==================");
-		int[] array = Operation.randomArray(1000,0,10000);
-		testSorters(array);
-
-		System.out.println("=================10k elements==================");
-		array = Operation.randomArray(10000,0,10000);
-		testSorters(array);
 
 		System.out.println("================100k elements==================");
-		array = Operation.randomArray(100000,0,10000);
+		int[] array = Operation.randomArray(100000,0,10000);
 		testSorters(array);
 
-		System.out.println("===============1k elements sorted==============");
-		array = Operation.orderedArray(1000, Operation.Order.Asc);
-		testSorters(array);
-
-		System.out.println("==============10k elements sorted==============");
-		array = Operation.orderedArray(10000, Operation.Order.Asc);
+		System.out.println("================1m elements==================");
+		array = Operation.randomArray(1_000_000,0,10000);
 		testSorters(array);
 
 		System.out.println("=============100k elements sorted==============");
 		array = Operation.orderedArray(100000, Operation.Order.Asc);
+		testSorters(array);
+
+		System.out.println("=============1m elements sorted==============");
+		array = Operation.orderedArray(1_000_000, Operation.Order.Asc);
 		testSorters(array);
 
 	}
