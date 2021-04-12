@@ -1,13 +1,15 @@
+
 package data;
 
-public class BinarySearchTree {
+
+
+public class BinarySearchTree implements Tree {
 	public Node head;
 
-	public BinarySearchTree() {
-	}
-
+	@Override
 	public void add(long value) {
 		head = addRecursive(head, value);
+
 	}
 
 	private Node addRecursive(Node current, long value) {
@@ -24,23 +26,22 @@ public class BinarySearchTree {
 		return current;
 	}
 
+	@Override
 	public boolean search(long value) {
-		return containsRecursive(head, value);
+		head = searchRecursive(head, value);
+		return head != null;
 	}
 
-	private boolean containsRecursive(Node current, long value) {
-		if(current == null) {
-			return false;
-		}
-		if(value == current.value) {
-			return true;
-		}
-		return value < current.value
-				? containsRecursive(current.left, value)
-				: containsRecursive(current.right, value);
+	protected Node searchRecursive(Node root, long value) {
+		if (root == null || root.value == value)
+			return root;
+		if (root.value > value)
+			return searchRecursive(root.left, value);
+		return searchRecursive(root.right, value);
 	}
 
-	public void delete(long value) {
+	@Override
+	public void delete(long value ) {
 		head = deleteRecursive(head, value);
 	}
 
@@ -51,15 +52,16 @@ public class BinarySearchTree {
 		if(value == current.value) {
 			if(current.left == null && current.right == null) {
 				return null;
-			}
-			if(current.right == null) {
+			} else if(current.right == null) {
 				return current.left;
-			}
-
-			if(current.left == null) {
+			} else if(current.left == null) {
 				return current.right;
+			} else {
+				long smallestValue = findSmallestValue(current.right);
+				current.value = smallestValue;
+				current.right = deleteRecursive(current.right, smallestValue);
+				return current;
 			}
-			return current;
 		}
 		if(value < current.value) {
 			current.left = deleteRecursive(current.left, value);
@@ -69,8 +71,11 @@ public class BinarySearchTree {
 		return current;
 	}
 
-	Node balance(Node node) {
-		updateHeight(node);
+	private long findSmallestValue(Node root) {
+		return root.left == null ? root.value : findSmallestValue(root.left);
+	}
+
+	private Node balanceNode(Node node) {
 		int balance = getBalance(node);
 		if(balance > 1) {
 			if(height(node.right.right) > height(node.right.left)) {
@@ -121,5 +126,20 @@ public class BinarySearchTree {
 		updateHeight(x);
 		return x;
 	}
+	
+	@Override
+	public void balancing() {
+		balancingRecursive(head);
+	}
 
+	void balancingRecursive(Node root) {
+		if (root != null) {
+			balancingRecursive(balanceNode(root.left));
+			balancingRecursive(balanceNode(root.right));
+		}
+	}
+
+	public void clear() {
+		this.head = null;
+	}
 }

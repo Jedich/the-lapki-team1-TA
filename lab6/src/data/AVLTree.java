@@ -4,12 +4,17 @@ public class AVLTree extends BinarySearchTree {
 	@Override
 	public void add(long value) {
 		super.add(value);
-		balance(head);
+		balancing();
 	}
 
 	@Override
 	public void delete(long value) {
 		super.delete(value);
-		balance(head);
+		balancing();
+	}
+
+	@Override
+	public boolean search(long value){
+		return super.search(value);
 	}
 }
