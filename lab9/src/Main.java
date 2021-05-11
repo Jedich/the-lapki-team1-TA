@@ -14,15 +14,18 @@ public class Main {
 
         Triangle tr = new Triangle(a);
 
+        System.out.println("1 ЗАВДАННЯ");
         for(int i = 0; i < 3; i++) {
-            System.out.println(TriangleDPSolver.minSumPath(tr));
-            System.out.println(TriangleDPSolver.maxSumPath(tr));
+            System.out.println("\nТрикутник:");
             for(int j = 0; j < tr.size; j++) {
                 System.out.println(Arrays.toString(tr.body[j]));
             }
+            System.out.println("Найменша сума чисел на маршруті: " +TriangleDPSolver.minSumPath(tr));
+            System.out.println("Найбільша сума чисел на маршруті: " +TriangleDPSolver.maxSumPath(tr));
             tr.body = tr.rotate();
         }
 
+        System.out.println("\n2 ЗАВДАННЯ");
         System.out.println(corruption(5,new  ArrayList<>(Arrays.asList(1000f, 1100f, 1200f, 1300f))));
     }
 
