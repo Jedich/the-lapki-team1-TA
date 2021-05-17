@@ -1,4 +1,4 @@
-package data;
+package tree;
 
 public class Node {
 	public long value;

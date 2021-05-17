@@ -1,7 +1,6 @@
-import data.*;
-import team1.tree.AVLTree;
-import team1.tree.BinarySearchTree;
-import team1.tree.Tree;
+import tree.AVLTree;
+import tree.BinarySearchTree;
+import tree.Tree;
 
 
 class Main {

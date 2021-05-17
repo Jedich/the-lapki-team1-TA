@@ -1,4 +1,4 @@
-package data;
+package tree;
 
 public interface Tree {
     void add(long value);

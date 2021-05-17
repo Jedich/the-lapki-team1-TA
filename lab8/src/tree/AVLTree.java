@@ -1,4 +1,4 @@
-package data;
+package tree;
 
 public class AVLTree extends BinarySearchTree {
 	@Override

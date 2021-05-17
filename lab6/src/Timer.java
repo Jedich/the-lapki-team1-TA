@@ -1,4 +1,5 @@
 import data.*;
+import team1.tree.Tree;
 
 import java.util.Locale;
 import java.util.Random;
