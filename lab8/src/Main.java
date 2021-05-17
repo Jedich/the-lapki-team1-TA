@@ -1,25 +1,37 @@
+import hashtable.Containerable;
 import tree.AVLTree;
 import tree.BinarySearchTree;
 import tree.Tree;
+import hashtable.HashTable;
 
 
 class Main {
     public static void main(String[] args) {
-        Tree[] trees = new Tree[]{new BinarySearchTree(), new AVLTree()};
-        String[] names = new String[]{"Unbalanced", "Balanced"};
-        for (int i = 0; i < 2; i++) {
-            Tree tree = trees[i];
+        Tree tree = new BinarySearchTree();
 
-            Timer timer = new Timer(tree);
-            System.out.println("\n" + names[i] + " tree");
+        Timer timer = new Timer(tree);
 
-            System.out.println("Inserting sorted elements: " + timer.sortedTimer(tree::add));
-            System.out.println("Balancing sorted elements: " + timer.balancingTimer());
-            System.out.println("Inserting random elements: " + timer.randomTimer(tree::add));
-            System.out.println("Balancing random elements: " + timer.balancingTimer());
-            System.out.println("Searching: " + timer.sortedTimer(tree::search));
-            System.out.println("Deleting: " + timer.sortedTimer(tree::delete));
+        System.out.println("Inserting random elements: " + timer.randomTimer(tree::add));
+        System.out.println("Searching: " + timer.sortedTimer(tree::search));
 
-        }
+
+
     }
+
+    public static void ma_ks() {
+        HashTable<String, Person> table = new HashTable<>();
+        Person p = new Person("baba valya", 9999999, true);
+        table.add(p.getName(), p);
+        p = new Person("telenik", 100500, true);
+        table.add(p.getName(), p);
+        p = new Person("bogatiy uyobak", -5, true);
+        table.add(p.getName(), p);
+        p = new Person("USer xexe", 0, false);
+        table.add(p.getName(), p);
+        p = new Person("mama Vitlica? net tvoya", 10, false);
+        table.add(p.getName(), p);
+
+
+    }
+
 }

@@ -1,4 +1,4 @@
-package Lists;
+package linkedlist;
 
 public class LinkedList<T> implements Listable<T> {
 	protected Node<T> head;
