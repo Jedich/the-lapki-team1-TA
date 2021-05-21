@@ -40,9 +40,10 @@ public class BinarySearchTree implements Tree {
 		return searchRecursive(root.right, value);
 	}
 
-	@Override
-	public void delete(long value ) {
-		head = deleteRecursive(head, value);
+
+	public void delete(long key ) {
+		head = deleteRecursive(head, key);
+		size--;
 	}
 
 	private Node deleteRecursive(Node current, long value) {
@@ -127,7 +128,7 @@ public class BinarySearchTree implements Tree {
 		return x;
 	}
 	
-	@Override
+
 	public void balancing() {
 		balancingRecursive(head);
 	}

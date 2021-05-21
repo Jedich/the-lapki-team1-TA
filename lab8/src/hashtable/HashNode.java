@@ -1,15 +1,15 @@
 package hashtable;
 
-class HashNode<K, V> {
-    K key;
+class HashNode<Long, V> {
+    Long key;
     V value;
     final int hashCode;
 
     // Reference to next node
-    HashNode<K, V> next;
+    HashNode<Long, V> next;
 
     // Constructor
-    public HashNode(K key, V value, int hashCode)
+    public HashNode(Long key, V value, int hashCode)
     {
         this.key = key;
         this.value = value;

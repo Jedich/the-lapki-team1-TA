@@ -21,7 +21,7 @@ public class HashTable<K, V> {
 
         bucketArray = new ArrayList<>();
 
-        numBuckets = 10;
+        numBuckets = 1000;
         size = 0;
 
         // Create empty chains
@@ -54,7 +54,7 @@ public class HashTable<K, V> {
 
 
     // Returns value for a key
-    public V get(K key) {
+    public V get(Long key) {
         // Find head of chain for given key
         int bucketIndex = getBucketIndex(key);
         int hashCode = hashCode(key);
@@ -72,46 +72,79 @@ public class HashTable<K, V> {
         return null;
     }
 
+    private Containerable<Long, V> createBucket(){
+
+        if (type == HashMapType.LinkedList) {
+            return new LinkedListContainer<V>();
+        }
+        if (type == HashMapType.Tree) {
+            return new TreeContainer<V>();
+        }
+        System.out.println("adding null");
+        return null;
+    }
+
     // Adds a key value pair to hash
     public void add(K key, V value) {
         // Find head of chain for given key
         int bucketIndex = getBucketIndex(key);
         int hashCode = hashCode(key);
-        HashNode<K, V> head = bucketArray.get(bucketIndex);
+        Containerable<Long, V> bucket = bucketArray.get(bucketIndex);
 
-        // Check if key is already present
-        while (head != null) {
-            if (head.key.equals(key) && head.hashCode == hashCode) {
-                head.value = value;
-                return;
+        if (bucket != null) {
+
+            V val = bucket.get(key);
+            if(val != null) {
+                bucket.set(key,val);
+            }else{
+                size++;
+                bucket.add(key, value);
             }
-            head = head.next;
+            return;
         }
 
-        // Insert key in chain
+        bucket = createBucket();
+        bucketArray.add(bucketIndex, bucket);
         size++;
-        head = bucketArray.get(bucketIndex);
-        HashNode<K, V> newNode
-                = new HashNode<K, V>(key, value, hashCode);
-        newNode.next = head;
-        bucketArray.set(bucketIndex, newNode);
+        bucket.add(key, value);
+
 
         // If load factor goes beyond threshold, then
         // double hash table size
-        if ((1.0 * size) / numBuckets >= 0.7) {
-            ArrayList<HashNode<K, V>> temp = bucketArray;
-            bucketArray = new ArrayList<>();
-            numBuckets = 2 * numBuckets;
-            size = 0;
-            for (int i = 0; i < numBuckets; i++)
-                bucketArray.add(null);
+//        if ((1.0 * size) / numBuckets >= 0.7) {
+//            ArrayList<T> temp = bucketArray;
+//            bucketArray = new ArrayList<>();
+//            numBuckets = 2 * numBuckets;
+//            size = 0;
+//            for (int i = 0; i < numBuckets; i++)
+//                bucketArray.add(null);
+//
+//            for(T bucket : temp) {
+//
+//            }
+//
+//            for (HashNode<Long, V> headNode : temp) {
+//                while (headNode != null) {
+//                    add(headNode.key, headNode.value);
+//                    headNode = headNode.next;
+//                }
+//            }
+//        }
 
-            for (HashNode<K, V> headNode : temp) {
-                while (headNode != null) {
-                    add(headNode.key, headNode.value);
-                    headNode = headNode.next;
-                }
-            }
-        }
+
+
     }
+
+    @Override
+    public String toString() {
+        bucketArray.forEach(System.out::println);
+        return "HashTable{" +
+                "  type=" + type +
+                ", numBuckets=" + numBuckets +
+                ", size=" + size +
+                ", sample=" + sample +
+                '}';
+    }
+
 }
+

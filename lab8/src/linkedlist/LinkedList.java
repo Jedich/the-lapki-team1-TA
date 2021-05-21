@@ -56,9 +56,8 @@ public class LinkedList<T> implements Listable<T> {
 		}
 		for (int i = 0; i < index; i++) {
 			currentNode = currentNode.next;
-			if(currentNode == null) {
-				throw new IndexOutOfBoundsException();
-			}
+			if (currentNode == null)
+				return null;
 		}
 		return currentNode.data;
 	}
@@ -73,17 +72,16 @@ public class LinkedList<T> implements Listable<T> {
 		--size;
 	}
 
-	public void removeFrom(int index) {
-		if (index > -1) {
-			Node<T> temp = head;
-			Node<T> current = null;
-			for (int i = 0; i < index; i++) {
-				current = temp;
-				temp = temp.next;
-			}
-			current.next = temp.next;
-			size--;
+	public void removeFrom(long key) {
+		Node<T> prev = head;
+		Node<T> current = head;
+		while(key != current.key) {
+			prev = current;
+			current = current.next;
 		}
+		prev.next = current.next;
+
+		size--;
 	}
 
 	public void removeLast(){

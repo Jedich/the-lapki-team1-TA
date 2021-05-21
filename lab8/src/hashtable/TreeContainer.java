@@ -1,4 +1,4 @@
-package linkedlist;
+package hashtable;
 
 import hashtable.Containerable;
 import tree.BinarySearchTree;

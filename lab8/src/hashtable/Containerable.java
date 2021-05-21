@@ -1,7 +1,9 @@
 package hashtable;
 
-public interface Containerable<K,V> {
-    void add(K k, V v);
-    void remove(K k);
-    void set(K k, V v);
+public interface Containerable<Long, V> {
+
+    abstract void add(Long k, V v);
+    abstract void remove(Long k);
+    abstract V get(Long key);
+    abstract void set(Long k, V v);
 }

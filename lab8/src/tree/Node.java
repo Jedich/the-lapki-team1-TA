@@ -1,7 +1,8 @@
 package tree;
 
-public class Node {
-	public long value;
+public class Node<V> {
+	public long key;
+	public V value;
 	int height;
 	public Node left, right;
 
