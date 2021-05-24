@@ -9,7 +9,7 @@ public class BinarySearchTree<V> {
 
 	public void add(long key, V val) {
 		head = addRecursive(head, key, val);
-		//balancingRecursive(head);
+		balancingRecursive(head);
 		size++;
 	}
 

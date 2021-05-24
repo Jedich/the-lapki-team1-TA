@@ -2,6 +2,7 @@ import hashtable.HashMapType;
 import hashtable.HashTable;
 import hashtable.LinkedListContainer;
 import hashtable.TreeContainer;
+import tree.BinarySearchTree;
 
 
 class Main {
@@ -9,21 +10,32 @@ class Main {
         task1();
 
         System.out.println("---------------------Task 2-----------------------");
-        HashTable<Integer> treeMap = new HashTable<Integer>(HashMapType.Tree);
-        HashTable<Integer> linkedMap = new HashTable<Integer>(HashMapType.LinkedList);
+        HashTable<Integer> treeMap = new HashTable<>(HashMapType.Tree);
+        HashTable<Integer> linkedMap = new HashTable<>(HashMapType.LinkedList);
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
 
         int[] iterations = new int[] {1000, 10000, 100_000, 200_000};
         for(int iter: iterations) {
             System.out.println("\n" + iter + " iterations: ");
             Timer timer = new Timer(treeMap);
 
-            System.out.println("Inserting elements(treeMap):" + timer.sortedTimer(treeMap::add, iter));
+            System.out.println("Inserting elements(treeMap):" + timer.randomTimer(treeMap::add, iter) + "ms");
 
-            System.out.println("Search elements(treeMap):" + timer.sortedTimer(treeMap::get, iter));
-            timer = new Timer(linkedMap);
-            System.out.println("Inserting elements(linkedMap): " + timer.sortedTimer(linkedMap::add, iter));
+            System.out.println("Search elements(treeMap):" + timer.randomTimer(treeMap::get, iter) + "ms");
 
-            System.out.println("Search elements(treeMap):" + timer.sortedTimer(treeMap::get, iter));
+            treeMap = new HashTable<>(HashMapType.Tree);
+
+            System.out.println("Inserting elements(linkedMap): " + timer.randomTimer(linkedMap::add, iter) + "ms");
+
+            System.out.println("Search elements(linkedMap):" + timer.randomTimer(linkedMap::get, iter) + "ms");
+
+            linkedMap = new HashTable<>(HashMapType.LinkedList);
+
+            System.out.println("Inserting elements(tree): " + timer.randomTimer(tree::add, iter) + "ms");
+
+            System.out.println("Search elements(tree): " + timer.randomTimer(tree::get, iter) + "ms");
+
+            tree = new BinarySearchTree<>();
         }
 
 
