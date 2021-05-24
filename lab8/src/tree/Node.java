@@ -6,10 +6,11 @@ public class Node<V> {
 	int height;
 	public Node left, right;
 
-	public Node(long value) {
-		this.value = value;
+	public Node(long key, V value) {
+		this.key = key;
 		right = null;
 		left = null;
+		this.value = value;
 	}
 
 

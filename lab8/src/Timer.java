@@ -1,4 +1,6 @@
-import tree.Tree;
+
+import hashtable.Containerable;
+import hashtable.HashTable;
 
 import java.util.Locale;
 import java.util.Random;
@@ -9,35 +11,25 @@ import java.util.function.Function;
 import java.util.function.IntConsumer;
 
 public class Timer {
-	private final Tree tree;
+	private final HashTable<Integer> hashmap;
 
-	public Timer(Tree tree) {
-		this.tree = tree;
+	public Timer(HashTable<Integer> amp) {
+		this.hashmap = amp;
 	}
 
-	public String sortedTimer(IntConsumer aMethod) {
-		tree.clear();
+	public String sortedTimer(BiConsumer<Long, Integer> aMethod, int iterNum) {
 		long start = System.nanoTime();
-		for (int i = 0; i <= 1000; i++) {
-			aMethod.accept(i);
+		for (int i = 0; i <= iterNum; i++) {
+			aMethod.accept((long)i, i);
 		}
-		return String.format(Locale.CANADA_FRENCH, "%,d", ((System.nanoTime() - start) / 1000));
+		return String.format(Locale.CANADA_FRENCH, "%,d", ((System.nanoTime() - start) / 1000000));
 	}
 
-	public String randomTimer(IntConsumer aMethod) {
-		tree.clear();
-		Random random = new Random();
-
+	public String sortedTimer(Function<Long, Integer> aMethod, int iterNum) {
 		long start = System.nanoTime();
-		for (int i = 0; i <= 1000; i++) {
-			aMethod.accept(random.nextInt());
+		for (int i = 0; i <= iterNum; i++) {
+			aMethod.apply((long)i);
 		}
-		return String.format(Locale.CANADA_FRENCH, "%,d", ((System.nanoTime() - start) / 1000));
-	}
-
-	public String balancingTimer() {
-		long start = System.nanoTime();
-		tree.balancing();
-		return String.format(Locale.CANADA_FRENCH, "%,d", ((System.nanoTime() - start) / 100));
+		return String.format(Locale.CANADA_FRENCH, "%,d", ((System.nanoTime() - start) / 1000000));
 	}
 }

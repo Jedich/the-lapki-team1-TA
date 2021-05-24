@@ -1,23 +1,23 @@
 package linkedlist;
 
-public class LinkedList<T> implements Listable<T> {
+public class LinkedList<T> {
 	protected Node<T> head;
 	public int size;
 
 	public LinkedList() { }
 
-	public void add(T data) {
+	public void add(Long key, T data) {
 		if(head == null) {
-			head = new Node<>(data);
+			head = new Node<>(key, data);
 		} else {
-			getLast(head).next = new Node<>(data);
+			getLast(head).next = new Node<>(key, data);
 		}
 		size++;
 	}
 
-	public void addTo(int index, T data) {
+	public void addTo(long index, T data) {
 		if (index > -1) {
-			Node<T> newNode = new Node<>(data);
+			Node<T> newNode = new Node<>(index, data);
 			Node<T> temp = head;
 			Node<T> current = null;
 			for (int i = 0; i < index; i++) {
@@ -30,18 +30,6 @@ public class LinkedList<T> implements Listable<T> {
 		}
 	}
 
-	public void addToStart(T value){
-		++size;
-		if(head == null){
-			head = new Node<T>(value);
-			return;
-		}
-		var node = new Node<T>(value);
-		var tmp = head;
-		head = node;
-		head.next = tmp;
-	}
-
 	Node<T> getLast(Node<T> currentNode) {
 		if(currentNode.next != null) {
 			return getLast(currentNode.next);
@@ -49,17 +37,30 @@ public class LinkedList<T> implements Listable<T> {
 		return currentNode;
 	}
 
-	public T get(int index) {
+	public T get(long key) {
+		if (head == null)
+			return null;
 		Node<T> currentNode = head;
-		if(index < 0) {
+		if(key < 0) {
 			throw new IndexOutOfBoundsException();
 		}
-		for (int i = 0; i < index; i++) {
+		while(key != currentNode.key) {
 			currentNode = currentNode.next;
 			if (currentNode == null)
 				return null;
 		}
 		return currentNode.data;
+	}
+
+	public Node<T> getNode(long key) {
+		Node<T> currentNode = head;
+		if(key < 0) {
+			throw new IndexOutOfBoundsException();
+		}
+		while(key != currentNode.key) {
+			currentNode = currentNode.next;
+		}
+		return currentNode;
 	}
 
 	public void removeFirst(){

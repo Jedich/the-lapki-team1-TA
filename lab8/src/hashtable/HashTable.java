@@ -1,24 +1,27 @@
 package hashtable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 // Class to represent entire hash table
-public class HashTable<K, V> {
+public class HashTable<V> {
     // bucketArray is used to store array of chains
-    private ArrayList<HashNode<K, V>> bucketArray;
+    private ArrayList<Containerable<Long, V> > bucketArray;
 
+    private HashMapType type;
 
     // Current capacity of array list
     private int numBuckets;
 
     // Current size of array list
     private int size;
+    private Containerable<Long, V> sample;
 
     // Constructor (Initializes capacity, size and
     // empty chains.
-    public HashTable() {
-
+    public HashTable(HashMapType type) {
+        this.type = type;
         bucketArray = new ArrayList<>();
 
         numBuckets = 1000;
@@ -37,17 +40,19 @@ public class HashTable<K, V> {
         return size() == 0;
     }
 
-    private final int hashCode(K key) {
+    private final int hashCode(Long key) {
+        //System.out.println("hashCode: "+ key + " " + Objects.hashCode(key));
         return Objects.hashCode(key);
     }
 
     // This implements hash function to find index
     // for a key
-    private int getBucketIndex(K key) {
+    private int getBucketIndex(Long key) {
         int hashCode = hashCode(key);
         int index = hashCode % numBuckets;
         // key.hashCode() coule be negative.
         index = index < 0 ? index * -1 : index;
+        //System.out.println(index);
         return index;
     }
 
@@ -59,17 +64,9 @@ public class HashTable<K, V> {
         int bucketIndex = getBucketIndex(key);
         int hashCode = hashCode(key);
 
-        HashNode<K, V> head = bucketArray.get(bucketIndex);
+        Containerable<Long, V> bucket = bucketArray.get(bucketIndex);
 
-        // Search key in chain
-        while (head != null) {
-            if (head.key.equals(key) && head.hashCode == hashCode)
-                return head.value;
-            head = head.next;
-        }
-
-        // If key not found
-        return null;
+        return bucket.get(key);
     }
 
     private Containerable<Long, V> createBucket(){
@@ -85,7 +82,7 @@ public class HashTable<K, V> {
     }
 
     // Adds a key value pair to hash
-    public void add(K key, V value) {
+    public void add(Long key, V value) {
         // Find head of chain for given key
         int bucketIndex = getBucketIndex(key);
         int hashCode = hashCode(key);
